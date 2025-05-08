@@ -4,9 +4,9 @@ COPY package.json .
 RUN npm install
 COPY . .
 EXPOSE 80
-
-CMD [ "node", "server.js" ]
+VOLUME [ "/app/node-module" ]
+CMD [ "npm", "start" ]
 
 
 #Build command :- docker build -t node-project:v1.0.0 .
-#Run Commaned:- docker run --rm --name node1 -d -p 3000:80 -v nodes:/app/feedback node-project:v1.0.0
+#Run Commaned:- docker run -d --rm -p 3000:80 --name feedback-app -v node1:/app/feedback -v $(pwd):/app node-project:v1.0.0
